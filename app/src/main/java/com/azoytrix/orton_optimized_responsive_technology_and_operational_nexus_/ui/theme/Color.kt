@@ -2,11 +2,15 @@ package com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus
 
 import androidx.compose.ui.graphics.Color
 
-val DarkBackground = Color(0xFF0B0F19)
-val DarkSurface = Color(0xFF121826)
-val GlassSurface = Color(0x1AFFFFFF)
-val NeonCyan = Color(0xFF00F2FE)
-val ElectricBlue = Color(0xFF4FACFE)
-val GlowingAmber = Color(0xFFF5A623)
-val TextWhite = Color(0xFFFFFFFF)
-val TextMuted = Color(0xFF94A3B8)
+val LightBackgroundStart = Color(0xFFF8FAFC)
+val LightBackgroundEnd = Color(0xFFE2E8F0)
+val GlassSurfaceLight = Color(0xCCFFFFFF)
+val GlassSurfaceVariantLight = Color(0xE6F1F5F9)
+val GlassBorderLight = Color(0x3300B4DB)
+val GlassBorderMuted = Color(0x1F000000)
+
+val PrimaryCyan = Color(0xFF00B4DB)
+val SecondaryBlue = Color(0xFF0083B0)
+val AccentAmber = Color(0xFFD97706)
+val TextDark = Color(0xFF0F172A)
+val TextMuted = Color(0xFF64748B)
