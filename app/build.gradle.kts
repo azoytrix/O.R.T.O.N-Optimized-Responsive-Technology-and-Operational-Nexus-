@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.mlkit:entity-extraction:16.0.0-beta6")
     implementation("com.google.mlkit:text-recognition:16.0.1")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
