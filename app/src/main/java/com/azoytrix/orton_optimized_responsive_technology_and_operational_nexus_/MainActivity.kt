@@ -22,6 +22,7 @@ import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_
 import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.ledger.ActionLogViewModel
 import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.memory.MemoryVaultScreen
 import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.memory.MemoryVaultViewModel
+import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.onboarding.WelcomeScreen
 import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.settings.SettingsScreen
 import com.azoytrix.orton_optimized_responsive_technology_and_operational_nexus_.ui.theme.ORTONOptimizedResponsiveTechnologyandOperationalNexusTheme
 
@@ -40,31 +41,41 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             ORTONOptimizedResponsiveTechnologyandOperationalNexusTheme {
+                var showWelcome by remember { mutableStateOf(true) }
                 var currentScreen by remember { mutableStateOf(Screen.CHAT) }
 
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    bottomBar = {
-                        NavigationBar {
-                            Screen.entries.forEach { screen ->
-                                NavigationBarItem(
-                                    icon = { Icon(screen.icon, contentDescription = screen.title) },
-                                    label = { Text(screen.title) },
-                                    selected = currentScreen == screen,
-                                    onClick = { currentScreen = screen }
-                                )
+                if (showWelcome) {
+                    WelcomeScreen(
+                        onGetStarted = {
+                            showWelcome = false
+                        }
+                    )
+                } else {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        bottomBar = {
+                            NavigationBar {
+                                Screen.entries.forEach { screen ->
+                                    NavigationBarItem(
+                                        icon = { Icon(screen.icon, contentDescription = screen.title) },
+                                        label = { Text(screen.title) },
+                                        selected = currentScreen == screen,
+                                        onClick = { currentScreen = screen }
+                                    )
+                                }
                             }
                         }
-                    }
-                ) { innerPadding ->
-                    Surface(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
-                        when (currentScreen) {
-                            Screen.CHAT -> ChatScreen(viewModel = chatViewModel)
-                            Screen.MEMORY -> MemoryVaultScreen(viewModel = memoryViewModel)
-                            Screen.LEDGER -> ActionLogScreen(viewModel = actionLogViewModel)
-                            Screen.SETTINGS -> SettingsScreen()
+                    ) { innerPadding ->
+                        Surface(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+                            when (currentScreen) {
+                                Screen.CHAT -> ChatScreen(viewModel = chatViewModel)
+                                Screen.MEMORY -> MemoryVaultScreen(viewModel = memoryViewModel)
+                                Screen.LEDGER -> ActionLogScreen(viewModel = actionLogViewModel)
+                                Screen.SETTINGS -> SettingsScreen()
+                            }
                         }
                     }
                 }
